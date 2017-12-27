@@ -7,7 +7,7 @@ var config = {
     ]
   },
   output: {
-    library: 'MyLibrary',
+    library: 'cleanDOM',
     libraryTarget: 'umd'
   },
   plugins: [

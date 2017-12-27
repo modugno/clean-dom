@@ -1,11 +1,12 @@
 {
   "name": "cleandom",
   "version": "1.0.0",
-  "description": "Library Description",
+  "description": "CleanDOM is a library for easy manipulation of gift and events",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "build:umd": "webpack src/index.js dist/cleandom.js",
+    "build:umd:watch": "webpack src/index.js dist/cleandom.js --watch",
     "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/cleandom.min.js",
     "clean": "rimraf lib dist coverage",
     "lint": "eslint src test examples",
