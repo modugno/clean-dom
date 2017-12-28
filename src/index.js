@@ -19,7 +19,6 @@ class CleanDOM extends Helpers {
     * @param {string} value 
     */
     val(value = null) {
-        
         if (value) {
             this.element.value = value;
             return this;
@@ -35,9 +34,9 @@ class CleanDOM extends Helpers {
     * @param {string} value 
     */
     attr(attribute, value) {
-        
         if (value) {
             this.element.setAttribute(attribute, value);
+            return this;
         }
         
         return this.element.getAttribute(attribute);
@@ -75,7 +74,6 @@ class CleanDOM extends Helpers {
     * @param {string|object} values 
     */
     css(...values) {
-        
         // validation
         this._cssValidation(values);
         
@@ -114,6 +112,7 @@ class CleanDOM extends Helpers {
         if (this.hasClass(className)) {
             this.element.classList.remove(className);
         }
+
         return this;
     }
     
@@ -142,7 +141,6 @@ class CleanDOM extends Helpers {
     * @param {string} content 
     */
     html(content = null) {
-        
         if (content) {
             this.element.innerHTML = content;
             return this;
@@ -157,7 +155,6 @@ class CleanDOM extends Helpers {
     * @param {string} content 
     */
     text(content = null) {
-        
         if (content) {
             this.element.textContent = content;
             return this;
@@ -174,6 +171,7 @@ class CleanDOM extends Helpers {
     append(content = null) {
         if (content) {
             this.element.innerHTML += content;
+            return this;
         }
         
         return this.element.innerHTML;
@@ -187,6 +185,7 @@ class CleanDOM extends Helpers {
     prepend(content = null) {
         if (content) {
             this.element.innerHTML = content + this.element.innerHTML;
+            return this;
         }
         
         return this.element.innerHTML;

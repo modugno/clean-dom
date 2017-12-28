@@ -102,7 +102,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function val() {
 	            var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-
 	            if (value) {
 	                this.element.value = value;
 	                return this;
@@ -121,9 +120,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'attr',
 	        value: function attr(attribute, value) {
-
 	            if (value) {
 	                this.element.setAttribute(attribute, value);
+	                return this;
 	            }
 
 	            return this.element.getAttribute(attribute);
@@ -219,6 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (this.hasClass(className)) {
 	                this.element.classList.remove(className);
 	            }
+
 	            return this;
 	        }
 
@@ -258,7 +258,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function html() {
 	            var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-
 	            if (content) {
 	                this.element.innerHTML = content;
 	                return this;
@@ -277,7 +276,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'text',
 	        value: function text() {
 	            var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
 
 	            if (content) {
 	                this.element.textContent = content;
@@ -300,6 +298,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (content) {
 	                this.element.innerHTML += content;
+	                return this;
 	            }
 
 	            return this.element.innerHTML;
@@ -318,6 +317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (content) {
 	                this.element.innerHTML = content + this.element.innerHTML;
+	                return this;
 	            }
 
 	            return this.element.innerHTML;
