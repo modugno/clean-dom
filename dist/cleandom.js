@@ -90,6 +90,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _this;
 	    }
 
+	    /**
+	    * Add or return value from inputs
+	    * 
+	    * @param {string} value 
+	    */
+
+
 	    _createClass(CleanDOM, [{
 	        key: 'val',
 	        value: function val() {
@@ -103,6 +110,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            return this.element.value;
 	        }
+
+	        /**
+	        * Set or get attribute
+	        * 
+	        * @param {string} attribute 
+	        * @param {string} value 
+	        */
+
 	    }, {
 	        key: 'attr',
 	        value: function attr(attribute, value) {
@@ -113,21 +128,48 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            return this.element.getAttribute(attribute);
 	        }
+
+	        /**
+	        * Remove attribute
+	        * 
+	        * @param {string} attribute 
+	        */
+
 	    }, {
 	        key: 'removeAttr',
 	        value: function removeAttr(attribute) {
 	            this.element.removeAttribute(attribute);
+	            return this;
 	        }
+
+	        /**
+	        * Show element
+	        */
+
 	    }, {
 	        key: 'show',
 	        value: function show() {
 	            this.element.style.display = 'block';
+	            return this;
 	        }
+
+	        /**
+	        * Hide element
+	        */
+
 	    }, {
 	        key: 'hide',
 	        value: function hide() {
 	            this.element.style.display = 'none';
+	            return this;
 	        }
+
+	        /**
+	        * Add style in element
+	        * 
+	        * @param {string|object} values 
+	        */
+
 	    }, {
 	        key: 'css',
 	        value: function css() {
@@ -149,28 +191,137 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.element.style[prop] = values[prop];
 	                }
 	            }
+
+	            return this;
 	        }
+
+	        /**
+	        * Add class in element
+	        * 
+	        * @param {string} className 
+	        */
+
 	    }, {
 	        key: 'addClass',
-	        value: function addClass() {}
+	        value: function addClass(className) {
+	            this.element.classList.add(className);
+	            return this;
+	        }
+
+	        /**
+	        * Remove class from element
+	        * @param {string} className 
+	        */
+
 	    }, {
 	        key: 'removeClass',
-	        value: function removeClass() {}
+	        value: function removeClass(className) {
+	            if (this.hasClass(className)) {
+	                this.element.classList.remove(className);
+	            }
+	            return this;
+	        }
+
+	        /**
+	        * Check if exist class in element
+	        * 
+	        * @param {string} className 
+	        */
+
 	    }, {
 	        key: 'hasClass',
-	        value: function hasClass() {}
+	        value: function hasClass(className) {
+	            return this.element.classList.contains(className);
+	        }
+
+	        /**
+	        * Toggle class in element
+	        * 
+	        * @param {string} className 
+	        */
+
 	    }, {
 	        key: 'toggleClass',
-	        value: function toggleClass() {}
+	        value: function toggleClass(className) {
+	            this.element.classList.toggle(className);
+	            return this;
+	        }
+
+	        /**
+	        * Append html in element
+	        * 
+	        * @param {string} content 
+	        */
+
 	    }, {
 	        key: 'html',
-	        value: function html() {}
+	        value: function html() {
+	            var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+
+	            if (content) {
+	                this.element.innerHTML = content;
+	                return this;
+	            }
+
+	            return this.element.innerHTML;
+	        }
+
+	        /**
+	        * Append text in element
+	        * 
+	        * @param {string} content 
+	        */
+
 	    }, {
 	        key: 'text',
-	        value: function text() {}
+	        value: function text() {
+	            var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+
+	            if (content) {
+	                this.element.textContent = content;
+	                return this;
+	            }
+
+	            return this.element.textContent;
+	        }
+
+	        /**
+	        * Append content at the end in element
+	        * 
+	        * @param {string} content 
+	        */
+
 	    }, {
 	        key: 'append',
-	        value: function append() {}
+	        value: function append() {
+	            var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+	            if (content) {
+	                this.element.innerHTML += content;
+	            }
+
+	            return this.element.innerHTML;
+	        }
+
+	        /**
+	        * Append content at the beginning in element
+	        * 
+	        * @param {string} content 
+	        */
+
+	    }, {
+	        key: 'prepend',
+	        value: function prepend() {
+	            var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+	            if (content) {
+	                this.element.innerHTML = content + this.element.innerHTML;
+	            }
+
+	            return this.element.innerHTML;
+	        }
 	    }, {
 	        key: 'parents',
 	        value: function parents() {}
