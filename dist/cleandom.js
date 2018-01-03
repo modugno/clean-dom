@@ -334,7 +334,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function parents() {
 	            var nodeSelector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-	            console.log(this, this.element);
+
 	            if (!nodeSelector) {
 	                return this.element.parentNode;
 	            }

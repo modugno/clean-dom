@@ -198,7 +198,7 @@ class CleanDOM extends Helpers {
      * @param {String} nodeSelector
      */
     parents(nodeSelector = null) {
-        console.log(this, this.element);
+        
         if (!nodeSelector) {
             return this.element.parentNode;
         }
