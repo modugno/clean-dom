@@ -182,13 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (values.length == 2) {
 	                this.element.style[values[0]] = values[1];
 	            } else if (values.length == 1) {
-
-	                values = values.shift();
-
-	                var prop = void 0;
-	                for (prop in values) {
-	                    this.element.style[prop] = values[prop];
-	                }
+	                Object.assign(this.element.style, values.shift());
 	            }
 
 	            return this;
@@ -400,6 +394,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'find',
 	        value: function find(nodeSelector) {
+
 	            if (!nodeSelector) {
 	                return this.element;
 	            }
@@ -408,7 +403,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                target = this._clearClassAndIdName(nodeSelector);
 
 	            elements.forEach(function (el) {
+
 	                if (el.nodeType === 1) {
+
 	                    if (el.classList.contains(target) || el.id === target) {
 	                        return el;
 	                    }
@@ -428,7 +425,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    }, {
 	        key: 'delegate',
-	        value: function delegate(event, element, callback) {}
+	        value: function delegate(event, element, callback) {
+	            if (!this.element) return false;
+
+	            element = this._clearClassAndIdName(element);
+
+	            this.element.addEventListener(event, function (e) {
+	                var el = e.target || e.srcElement;
+	                if (el.classList.contains(element) || el.id === element || el.nodeName === element.toLowerCase()) {
+	                    callback(e);
+	                }
+	            });
+	        }
 
 	        /**
 	        * Call event on addEventListener
@@ -440,6 +448,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'on',
 	        value: function on(event, callback) {
+	            if (!this.element) return false;
 	            this.element.addEventListener(event, callback, false);
 	        }
 	    }]);
@@ -489,7 +498,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        * @param {NodeElement|HTMLElement|String} selector Selector or Node Element
 	        */
 	        value: function _treatElement(selector) {
-	            var element = document.querySelectorAll(selector);
+
+	            // defines the element type
+	            var element = void 0;
+
+	            // selector
+	            if (typeof selector === 'string') {
+	                element = document.querySelectorAll(selector);
+
+	                // html element
+	            } else if (selector.nodeType && selector.nodeType === 1) {
+	                return selector;
+
+	                // document element
+	            } else if (selector.nodeType && selector.nodeType === 9) {
+	                return document.body;
+	            }
+
+	            if (!element) {
+	                return document.body;
+	            }
+
 	            if (element.length == 0) {
 	                return undefined;
 	            }

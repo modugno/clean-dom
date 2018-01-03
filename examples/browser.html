@@ -7,19 +7,31 @@
 <body>
 
   <div class="teste">
-    <span class="sun-1"></span>
-    <span class="sun-2">
-      <p class="sub-3">Clicando</p>
-    </span>
+    Criar
   </div>
+
+  <span class="result">
+
+  </span>
 </body>
 <script src="../dist/cleandom.js"></script>
 <script>
+  const $ = cleanDOM.cleanDOM;
+
+  const btn = $('.teste');
+  const res = $('.result');
   
-  const btn = cleanDOM.cleanDOM('.sub-3');
-  
+  let i = 1;
   btn.on('click', function(e) {
     
+    res.append(`<li class='add'>add ${i}</li>`);
+    i++;
+  });
+
+  $(document).delegate('click', '.add', function(e) {
+    let el = e.target;
+
+    $(el).css('color', '#ff0');
   });
 
 </script>

@@ -82,13 +82,7 @@ class CleanDOM extends Helpers {
             this.element.style[values[0]] = values[1];
             
         } else if (values.length == 1) {
-            
-            values = values.shift();
-            
-            let prop;
-            for (prop in values) {
-                this.element.style[prop] = values[prop];
-            }
+            Object.assign(this.element.style, values.shift());
         }
         
         return this;
@@ -255,15 +249,18 @@ class CleanDOM extends Helpers {
     * @param {String} nodeSelector
     */
     find(nodeSelector) {
+
         if (!nodeSelector) {
             return this.element;
         }
-        
+
         let elements = this.element.childNodes,
         target = this._clearClassAndIdName(nodeSelector);
-        
+
         elements.forEach(el => {
+            
             if (el.nodeType === 1) {
+            
                 if (el.classList.contains(target) || el.id === target) {
                     return el;
                 }
@@ -282,7 +279,16 @@ class CleanDOM extends Helpers {
      * @param {Function} callback 
      */
     delegate(event, element, callback) {
+        if (!this.element) return false;
+
+        element = this._clearClassAndIdName(element);
         
+        this.element.addEventListener(event, function(e) {
+            const el = e.target || e.srcElement;
+            if (el.classList.contains(element) || el.id === element || el.nodeName === element.toLowerCase()) {
+                callback(e);
+            }
+        });
     }
 
     /**
@@ -292,6 +298,7 @@ class CleanDOM extends Helpers {
     * @param {Function} callback Callback
     */
     on(event, callback) {
+        if (!this.element) return false;
         this.element.addEventListener(event, callback, false);
     }
     

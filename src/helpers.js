@@ -9,7 +9,27 @@ export class Helpers {
     * @param {NodeElement|HTMLElement|String} selector Selector or Node Element
     */
     _treatElement(selector) {
-        const element = document.querySelectorAll(selector);
+
+        // defines the element type
+        let element;
+
+        // selector
+        if (typeof selector === 'string') {
+            element = document.querySelectorAll(selector);
+            
+        // html element
+        } else if (selector.nodeType && selector.nodeType === 1) {
+            return selector;
+        
+        // document element
+        } else if (selector.nodeType && selector.nodeType === 9) {
+            return document.body;
+        }
+        
+        if (!element) {
+            return document.body;
+        }
+
         if (element.length == 0) {
             return undefined;
         }
