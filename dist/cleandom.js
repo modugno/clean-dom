@@ -324,10 +324,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        /**
-	         * Get Parent Node
-	         * 
-	         * @param {String} nodeSelector
-	         */
+	        * Get Parent Node
+	        * 
+	        * @param {String} nodeSelector
+	        */
 
 	    }, {
 	        key: 'parents',
@@ -340,7 +340,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 
 	            var current = this.element,
-	                list = [],
 	                target = this._clearClassAndIdName(nodeSelector);
 
 	            // each all parents nodes with target, and returns
@@ -352,22 +351,80 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
+
+	        /**
+	        * Get Children Element
+	        * 
+	        */
+
 	    }, {
 	        key: 'children',
-	        value: function children() {}
+	        value: function children() {
+	            return this.element.firstChild;
+	        }
+
+	        /**
+	        * Get All Children Element
+	        * 
+	        * @param {String} nodeSelector
+	        */
+
+	    }, {
+	        key: 'childrens',
+	        value: function childrens() {
+	            if (!nodeSelector) {
+	                return this.element.firstChild;
+	            }
+
+	            var elements = this.element.childNodes,
+	                childrens = [],
+	                target = this._clearClassAndIdName(nodeSelector);
+
+	            elements.forEach(function (el) {
+	                if (el.nodeType === 1) {
+	                    if (el.classList.contains(target) || el.id === target) {
+	                        childrens.push(el);
+	                    }
+	                }
+	            });
+
+	            return childrens;
+	        }
+
+	        /**
+	        * Find the element in nodeList
+	        * 
+	        * @param {String} nodeSelector
+	        */
+
 	    }, {
 	        key: 'find',
-	        value: function find() {}
+	        value: function find(nodeSelector) {
+	            if (!nodeSelector) {
+	                return this.element;
+	            }
+
+	            var elements = this.element.childNodes,
+	                target = this._clearClassAndIdName(nodeSelector);
+
+	            elements.forEach(function (el) {
+	                if (el.nodeType === 1) {
+	                    if (el.classList.contains(target) || el.id === target) {
+	                        return el;
+	                    }
+	                }
+	            });
+	        }
 	    }, {
 	        key: 'remove',
 	        value: function remove() {}
 
 	        /**
-	         * Call event on addEventListener
-	         * 
-	         * @param {Event} event event called
-	         * @param {Function} callback Callback
-	         */
+	        * Call event on addEventListener
+	        * 
+	        * @param {Event} event event called
+	        * @param {Function} callback Callback
+	        */
 
 	    }, {
 	        key: 'on',

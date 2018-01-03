@@ -113,7 +113,7 @@ class CleanDOM extends Helpers {
         if (this.hasClass(className)) {
             this.element.classList.remove(className);
         }
-
+        
         return this;
     }
     
@@ -193,10 +193,10 @@ class CleanDOM extends Helpers {
     }
     
     /**
-     * Get Parent Node
-     * 
-     * @param {String} nodeSelector
-     */
+    * Get Parent Node
+    * 
+    * @param {String} nodeSelector
+    */
     parents(nodeSelector = null) {
         
         if (!nodeSelector) {
@@ -204,25 +204,71 @@ class CleanDOM extends Helpers {
         }
         
         let current  = this.element,
-               list  = [],
-              target = this._clearClassAndIdName(nodeSelector);
+        target = this._clearClassAndIdName(nodeSelector);
         
         // each all parents nodes with target, and returns
         while (current.parentNode != undefined && current.parentNode != document.documentElement) {
-          current = current.parentNode;
-
-          if (current.parentNode.classList.contains(target) || current.id === target) {
-            return current.parentNode;
-          }
+            current = current.parentNode;
+            
+            if (current.parentNode.classList.contains(target) || current.id === target) {
+                return current.parentNode;
+            }
         }
     }
     
+    /**
+    * Get Children Element
+    * 
+    */
     children() {
-        
+        return this.element.firstChild;
     }
     
-    find() {
+    /**
+    * Get All Children Element
+    * 
+    * @param {String} nodeSelector
+    */
+    childrens() {
+        if (!nodeSelector) {
+            return this.element.firstChild;
+        }
         
+        let elements = this.element.childNodes,
+        childrens = [],
+        target = this._clearClassAndIdName(nodeSelector);
+        
+        elements.forEach(el => {
+            if (el.nodeType === 1) {
+                if (el.classList.contains(target) || el.id === target) {
+                    childrens.push(el);
+                }
+            }
+        });
+
+        return childrens;
+    }
+    
+    /**
+    * Find the element in nodeList
+    * 
+    * @param {String} nodeSelector
+    */
+    find(nodeSelector) {
+        if (!nodeSelector) {
+            return this.element;
+        }
+        
+        let elements = this.element.childNodes,
+        target = this._clearClassAndIdName(nodeSelector);
+        
+        elements.forEach(el => {
+            if (el.nodeType === 1) {
+                if (el.classList.contains(target) || el.id === target) {
+                    return el;
+                }
+            }
+        })
     }
     
     remove() {
@@ -230,11 +276,11 @@ class CleanDOM extends Helpers {
     }
     
     /**
-     * Call event on addEventListener
-     * 
-     * @param {Event} event event called
-     * @param {Function} callback Callback
-     */
+    * Call event on addEventListener
+    * 
+    * @param {Event} event event called
+    * @param {Function} callback Callback
+    */
     on(event, callback) {
         this.element.addEventListener(event, callback, false);
     }
