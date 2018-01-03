@@ -420,6 +420,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function remove() {}
 
 	        /**
+	         * 
+	         * @param {Event} event 
+	         * @param {String} element Selector
+	         * @param {Function} callback 
+	         */
+
+	    }, {
+	        key: 'delegate',
+	        value: function delegate(event, element, callback) {}
+
+	        /**
 	        * Call event on addEventListener
 	        * 
 	        * @param {Event} event event called

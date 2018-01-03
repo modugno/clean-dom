@@ -276,6 +276,16 @@ class CleanDOM extends Helpers {
     }
     
     /**
+     * 
+     * @param {Event} event 
+     * @param {String} element Selector
+     * @param {Function} callback 
+     */
+    delegate(event, element, callback) {
+        
+    }
+
+    /**
     * Call event on addEventListener
     * 
     * @param {Event} event event called
