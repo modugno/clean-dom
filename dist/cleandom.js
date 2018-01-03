@@ -420,6 +420,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'delegate',
 	        value: function delegate(event, element, callback) {
+	            var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
 	            if (!this.element) return false;
 
 	            element = this._clearClassAndIdName(element);
@@ -427,9 +429,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.element.addEventListener(event, function (e) {
 	                var el = e.target || e.srcElement;
 	                if (el.classList.contains(element) || el.id === element || el.nodeName === element.toLowerCase()) {
-	                    callback(e);
+	                    callback(e, el);
 	                }
-	            });
+	            }, options);
 	        }
 
 	        /**
@@ -442,8 +444,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'on',
 	        value: function on(event, callback) {
+	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
 	            if (!this.element) return false;
-	            this.element.addEventListener(event, callback, false);
+
+	            this.element.addEventListener(event, function (e) {
+	                var el = e.target || e.srcElement;
+	                callback(e, el);
+	            }, options);
 	        }
 	    }]);
 

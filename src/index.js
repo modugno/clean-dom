@@ -272,7 +272,7 @@ class CleanDOM extends Helpers {
      * @param {String} element Selector
      * @param {Function} callback 
      */
-    delegate(event, element, callback) {
+    delegate(event, element, callback, options = false) {
         if (!this.element) return false;
 
         element = this._clearClassAndIdName(element);
@@ -280,9 +280,9 @@ class CleanDOM extends Helpers {
         this.element.addEventListener(event, function(e) {
             const el = e.target || e.srcElement;
             if (el.classList.contains(element) || el.id === element || el.nodeName === element.toLowerCase()) {
-                callback(e);
+                callback(e, el);
             }
-        });
+        }, options);
     }
 
     /**
@@ -291,9 +291,13 @@ class CleanDOM extends Helpers {
     * @param {Event} event event called
     * @param {Function} callback Callback
     */
-    on(event, callback) {
+    on(event, callback, options = false) {
         if (!this.element) return false;
-        this.element.addEventListener(event, callback, false);
+
+        this.element.addEventListener(event, function(e) {
+            const el = e.target || e.srcElement;
+            callback(e, el);
+        }, options);
     }
     
 }

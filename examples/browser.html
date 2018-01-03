@@ -22,16 +22,16 @@
   const res = $('.result');
   
   let i = 1;
-  btn.on('click', function(e) {
-    
+  btn.on('click', function(e, self) {
+
+    $(self).css({ color: '#fff', background: '#000' });
     res.append(`<li class='add'>add ${i}</li>`);
+
     i++;
   });
 
-  $(document).delegate('click', '.add', function(e) {
-    let el = e.target;
-
-    $(el).css('color', '#ff0');
+  $(document).delegate('click', '.add', function(e, self) {
+    $(self).css('color', '#ff0');
   });
 
 </script>
