@@ -370,7 +370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this.element.firstChild;
 	            }
 
-	            var elements = this.element.childNodes,
+	            var elements = this.element.children,
 	                childrens = [],
 	                target = this._clearClassAndIdName(nodeSelector);
 

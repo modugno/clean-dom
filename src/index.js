@@ -228,7 +228,7 @@ class CleanDOM extends Helpers {
             return this.element.firstChild;
         }
         
-        let elements = this.element.childNodes,
+        let elements = this.element.children,
         childrens = [],
         target = this._clearClassAndIdName(nodeSelector);
         
