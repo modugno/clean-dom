@@ -375,10 +375,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                target = this._clearClassAndIdName(nodeSelector);
 
 	            elements.forEach(function (el) {
-	                if (el.nodeType === 1) {
-	                    if (el.classList.contains(target) || el.id === target) {
-	                        childrens.push(el);
-	                    }
+	                if (el.classList.contains(target) || el.id === target) {
+	                    childrens.push(el);
 	                }
 	            });
 
@@ -399,16 +397,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this.element;
 	            }
 
-	            var elements = this.element.childNodes,
+	            var elements = this.element.children,
 	                target = this._clearClassAndIdName(nodeSelector);
 
 	            elements.forEach(function (el) {
-
-	                if (el.nodeType === 1) {
-
-	                    if (el.classList.contains(target) || el.id === target) {
-	                        return el;
-	                    }
+	                if (el.classList.contains(target) || el.id === target) {
+	                    return el;
 	                }
 	            });
 	        }

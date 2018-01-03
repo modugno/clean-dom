@@ -233,10 +233,8 @@ class CleanDOM extends Helpers {
         target = this._clearClassAndIdName(nodeSelector);
         
         elements.forEach(el => {
-            if (el.nodeType === 1) {
-                if (el.classList.contains(target) || el.id === target) {
-                    childrens.push(el);
-                }
+            if (el.classList.contains(target) || el.id === target) {
+                childrens.push(el);
             }
         });
 
@@ -254,16 +252,12 @@ class CleanDOM extends Helpers {
             return this.element;
         }
 
-        let elements = this.element.childNodes,
+        let elements = this.element.children,
         target = this._clearClassAndIdName(nodeSelector);
 
         elements.forEach(el => {
-            
-            if (el.nodeType === 1) {
-            
-                if (el.classList.contains(target) || el.id === target) {
-                    return el;
-                }
+            if (el.classList.contains(target) || el.id === target) {
+                return el;
             }
         })
     }
