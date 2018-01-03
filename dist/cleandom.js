@@ -334,15 +334,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function parents() {
 	            var nodeSelector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-
+	            console.log(this, this.element);
 	            if (!nodeSelector) {
 	                return this.element.parentNode;
 	            }
 
-	            var current = document.querySelector(nodeSelector);
-	            list = [];
-
-	            target = this._clearClassAndIdName(target);
+	            var current = this.element,
+	                list = [],
+	                target = this._clearClassAndIdName(nodeSelector);
 
 	            // each all parents nodes with target, and returns
 	            while (current.parentNode != undefined && current.parentNode != document.documentElement) {
@@ -362,6 +361,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'remove',
 	        value: function remove() {}
+
+	        /**
+	         * Call event on addEventListener
+	         * 
+	         * @param {Event} event event called
+	         * @param {Function} callback Callback
+	         */
+
+	    }, {
+	        key: 'on',
+	        value: function on(event, callback) {
+	            this.element.addEventListener(event, callback, false);
+	        }
 	    }]);
 
 	    return CleanDOM;
@@ -410,7 +422,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        */
 	        value: function _treatElement(selector) {
 	            var element = document.querySelectorAll(selector);
-
 	            if (element.length == 0) {
 	                return undefined;
 	            }

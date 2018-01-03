@@ -10,7 +10,6 @@ export class Helpers {
     */
     _treatElement(selector) {
         const element = document.querySelectorAll(selector);
-        
         if (element.length == 0) {
             return undefined;
         }

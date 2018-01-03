@@ -198,20 +198,19 @@ class CleanDOM extends Helpers {
      * @param {String} nodeSelector
      */
     parents(nodeSelector = null) {
-
+        console.log(this, this.element);
         if (!nodeSelector) {
             return this.element.parentNode;
         }
-
-        let current = document.querySelector(nodeSelector)
-               list = [];
-
-        target = this._clearClassAndIdName(target);
+        
+        let current  = this.element,
+               list  = [],
+              target = this._clearClassAndIdName(nodeSelector);
         
         // each all parents nodes with target, and returns
         while (current.parentNode != undefined && current.parentNode != document.documentElement) {
           current = current.parentNode;
-          
+
           if (current.parentNode.classList.contains(target) || current.id === target) {
             return current.parentNode;
           }
@@ -230,6 +229,15 @@ class CleanDOM extends Helpers {
         
     }
     
+    /**
+     * Call event on addEventListener
+     * 
+     * @param {Event} event event called
+     * @param {Function} callback Callback
+     */
+    on(event, callback) {
+        this.element.addEventListener(event, callback, false);
+    }
     
 }
 

@@ -6,13 +6,21 @@
 </head>
 <body>
 
-  <div class="teste">Teste Legal</div>
+  <div class="teste">
+    <span class="sun-1"></span>
+    <span class="sun-2">
+      <p class="sub-3">Clicando</p>
+    </span>
+  </div>
 </body>
 <script src="../dist/cleandom.js"></script>
 <script>
   
-  const teste = cleanDOM.cleanDOM('.teste');
+  const btn = cleanDOM.cleanDOM('.sub-3');
+  
+  btn.on('click', function(e) {
+    
+  });
 
-  teste.css();
 </script>
 </html>
