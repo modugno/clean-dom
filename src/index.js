@@ -1,4 +1,5 @@
 import { Helpers } from './helpers';
+
 /**
 * index.js
 * @author Guilherme Modugno
@@ -191,8 +192,30 @@ class CleanDOM extends Helpers {
         return this.element.innerHTML;
     }
     
-    parents() {
+    /**
+     * Get Parent Node
+     * 
+     * @param {String} nodeSelector
+     */
+    parents(nodeSelector = null) {
+
+        if (!nodeSelector) {
+            return this.element.parentNode;
+        }
+
+        let current = document.querySelector(nodeSelector)
+               list = [];
+
+        target = this._clearClassAndIdName(target);
         
+        // each all parents nodes with target, and returns
+        while (current.parentNode != undefined && current.parentNode != document.documentElement) {
+          current = current.parentNode;
+          
+          if (current.parentNode.classList.contains(target) || current.id === target) {
+            return current.parentNode;
+          }
+        }
     }
     
     children() {

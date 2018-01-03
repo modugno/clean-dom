@@ -25,4 +25,15 @@ export class Helpers {
             throw new Error('The CSS method has many parameters');
         }
     }
+
+    /**
+     * Clear . from class, and # from ID
+     * 
+     * @param {String} selector 
+     */
+    _clearClassAndIdName(selector) {
+        selector = selector.replace('.', '');
+        selector = selector.replace('#', '');
+        return selector;
+    }
 }

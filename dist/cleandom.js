@@ -322,9 +322,37 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            return this.element.innerHTML;
 	        }
+
+	        /**
+	         * Get Parent Node
+	         * 
+	         * @param {String} nodeSelector
+	         */
+
 	    }, {
 	        key: 'parents',
-	        value: function parents() {}
+	        value: function parents() {
+	            var nodeSelector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+
+	            if (!nodeSelector) {
+	                return this.element.parentNode;
+	            }
+
+	            var current = document.querySelector(nodeSelector);
+	            list = [];
+
+	            target = this._clearClassAndIdName(target);
+
+	            // each all parents nodes with target, and returns
+	            while (current.parentNode != undefined && current.parentNode != document.documentElement) {
+	                current = current.parentNode;
+
+	                if (current.parentNode.classList.contains(target) || current.id === target) {
+	                    return current.parentNode;
+	                }
+	            }
+	        }
 	    }, {
 	        key: 'children',
 	        value: function children() {}
@@ -397,6 +425,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            } else if (values.length > 2) {
 	                throw new Error('The CSS method has many parameters');
 	            }
+	        }
+
+	        /**
+	         * Clear . from class, and # from ID
+	         * 
+	         * @param {String} selector 
+	         */
+
+	    }, {
+	        key: '_clearClassAndIdName',
+	        value: function _clearClassAndIdName(selector) {
+	            selector = selector.replace('.', '');
+	            selector = selector.replace('#', '');
+	            return selector;
 	        }
 	    }]);
 
