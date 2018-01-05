@@ -23,15 +23,27 @@
   
   let i = 1;
   btn.on('click', function(e, self) {
-
     $(self).css({ color: '#fff', background: '#000' });
-    res.append(`<li class='add'>add ${i}</li>`);
-
+    res.append(`<li class='add'>add ${i} <a href='#remove' class='remove'>[x]</a></li>`);
     i++;
   });
 
+  // add
   $(document).delegate('click', '.add', function(e, self) {
-    $(self).css('color', '#ff0');
+    $(self).css({
+      color: '#00f',
+      'font-size': '1.3em'
+    });
+  });
+
+  // remove
+  $(document).delegate('click', '.remove', function(e, self) {
+    
+    const li = $(self).parents('li');
+
+    console.log(li);
+    console.log($(li));
+    // $(li).remove();
   });
 
 </script>

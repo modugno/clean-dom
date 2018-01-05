@@ -335,14 +335,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            var current = this.element,
 	                target = this._clearClassAndIdName(nodeSelector);
-
 	            // each all parents nodes with target, and returns
 	            while (current.parentNode != undefined && current.parentNode != document.documentElement) {
-	                current = current.parentNode;
 
-	                if (current.parentNode.classList.contains(target) || current.id === target) {
-	                    return current.parentNode;
-	                }
+	                if (current.parentNode.classList.contains(target) // if has class
+	                || current.parentNode.id === target // if has id
+	                || current.parentNode.tagName === target.toUpperCase() // if has tagName
+	                ) {
+	                        return current.parentNode;
+	                    }
+
+	                current = current.parentNode;
 	            }
 	        }
 
@@ -406,9 +409,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            });
 	        }
+
+	        /**
+	         * Remove Dom Element
+	         * @param {NodeElement|HTMLElement|string} element 
+	         */
+
 	    }, {
 	        key: 'remove',
-	        value: function remove() {}
+	        value: function remove() {
+	            var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+
+	            if (!element) {
+	                this.element.parentNode.removeChild(this.element);
+	                this.element.blur();
+	            }
+
+	            if (typeof element === 'string') {
+	                element = document.querySelector(element);
+	            }
+
+	            this.element.removeChild(element);
+	        }
 
 	        /**
 	         * 
